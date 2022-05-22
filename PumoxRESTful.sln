@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumoxRESTful", "PumoxRESTful\PumoxRESTful.csproj", "{C6810F6C-0B3E-41E7-A11E-F9080C297CA4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C6810F6C-0B3E-41E7-A11E-F9080C297CA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6810F6C-0B3E-41E7-A11E-F9080C297CA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6810F6C-0B3E-41E7-A11E-F9080C297CA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6810F6C-0B3E-41E7-A11E-F9080C297CA4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {516F5C5E-C08A-4257-B291-7B0A8343B988}
+	EndGlobalSection
+EndGlobal
