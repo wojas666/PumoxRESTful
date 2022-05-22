@@ -19,7 +19,7 @@ namespace PumoxRESTful.Controllers
         [HttpGet()]
         public string Get()
         {
-            Console.WriteLine("Request received: GET /HealthStatus");
+            Console.WriteLine("Request received: GET /Company");
             return Status.ToString();
         }
 
@@ -27,7 +27,7 @@ namespace PumoxRESTful.Controllers
         [HttpPost("SetResponse/{status}")]
         public ActionResult SetResponse(string status)
         {
-            Console.WriteLine("Request received: POST /HealthStatus");
+            Console.WriteLine("Request received: POST /Company");
             Status = status;
             return Ok($"Changed status to {status}");
         }

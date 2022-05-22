@@ -32,12 +32,6 @@ static void CommandLoop(string url)
 	{
         var args = Console.ReadLine().Split();
 
-        if (args.Length < 2 || args[0] != "set-status")
-        {
-            Console.WriteLine("Invalid command");
-            continue;
-        }
-
         CompanyController.Status = "Test add status";
 	}
 }
