@@ -11,5 +11,6 @@ namespace PumoxRESTful.DAL
         }
 
         public DbSet<Company> Companys { get; set; }
+        public DbSet<Employee> Employees { get; set; }
     }
 }

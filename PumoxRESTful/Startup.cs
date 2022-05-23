@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using PumoxRESTful.DAL;
 using Microsoft.EntityFrameworkCore;
+using PumoxRESTful.Repositories;
 
 namespace PumoxRESTful
 {
@@ -26,12 +28,16 @@ namespace PumoxRESTful
                 options.AddPolicy("BasicAuthentication", new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build());
             });
 
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(opt =>
+            {
+                opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
 
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")
             ));
 
+            services.AddSingleton<ICompaniesRepository, InMemCompaniesRespository>();
 
         }
 
