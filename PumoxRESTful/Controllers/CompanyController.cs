@@ -25,16 +25,16 @@ namespace PumoxRESTful.Controllers
 
         [BasicAuthorize]
         [HttpGet("{id}")]
-        public ActionResult<CompanyDto> GetCompany(long id)
+        public JsonResult GetCompany(long id)
         {
             var company = _companiesRepository.GetCompany(id);
 
             if (company is null)
             {
-                return NotFound();
+                return new JsonResult(NotFound());
             }
 
-            return company.AsDto();
+            return new JsonResult((CompanyDto)company.AsDto());
         }
 
         [BasicAuthorize]
@@ -87,6 +87,7 @@ namespace PumoxRESTful.Controllers
 
             existingCompany.Name = companyDto.Name;
             existingCompany.EstablishmentYear = companyDto.EstablishmentYear;
+            List<Employee> companyEmployees = new List<Employee>();
 
             foreach (var item in companyDto.Employees)
             {
@@ -99,10 +100,31 @@ namespace PumoxRESTful.Controllers
                     JobTitle = item.JobTitle
                 };
 
-                existingCompany.Employees.Add(employee);
+                companyEmployees.Add(employee);
             }
 
+            existingCompany.Employees = companyEmployees;
+            _companiesRepository.UpdateCompany(existingCompany);
+
             return NoContent();
+        }
+
+        [BasicAuthorize]
+        [HttpPost("search")]
+        public JsonResult SearchCompany(SearchCompanyDto searchCompanyDto)
+        {
+            var searchCompanies = _companiesRepository.searchCompanies(searchCompanyDto.Keyword,
+                searchCompanyDto.EmployeeDateOfBirthFrom, searchCompanyDto.EmployeeDateOfBirthTo,
+                searchCompanyDto.EmployeeJobTitles);
+
+            List<CompanyDto> result = new List<CompanyDto>();
+
+            foreach (var resultItem in searchCompanies)
+            {
+                result.Add(resultItem.AsDto());
+            }
+
+            return new JsonResult(result);
         }
 
         [BasicAuthorize]

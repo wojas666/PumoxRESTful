@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using PumoxRESTful.DAL;
 using Microsoft.EntityFrameworkCore;
 using PumoxRESTful.Repositories;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 namespace PumoxRESTful
 {
@@ -31,14 +32,18 @@ namespace PumoxRESTful
             services.AddControllers().AddJsonOptions(opt =>
             {
                 opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            }).AddNewtonsoftJson(opt =>
+            {
+                opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
+            
 
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")
             ));
-
-            services.AddSingleton<ICompaniesRepository, InMemCompaniesRespository>();
-
+            
+            services.AddScoped<ICompaniesRepository, SqlDbCompaniesRepository>();
+            //services.AddSingleton<ICompaniesRepository, InMemCompaniesRespository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

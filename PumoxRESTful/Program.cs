@@ -31,7 +31,6 @@ static void CommandLoop(string url)
 	while (true)
 	{
         var args = Console.ReadLine().Split();
-
-        CompanyController.Status = "Test add status";
+        
 	}
 }

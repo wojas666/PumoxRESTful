@@ -51,7 +51,7 @@ namespace PumoxRESTful.Repositories
         }
 
         public ICollection<Company> searchCompanies(string? keyword, DateTime? employeeDateOfBirthFrom, DateTime? employeeDateOfBirthTo,
-            JobTitle? employeeJobTitles)
+            ICollection<JobTitle>? employeeJobTitles)
         {
             ICollection<Company> results = GetCompanies().ToList();
             
@@ -76,9 +76,8 @@ namespace PumoxRESTful.Repositories
 
             if (employeeJobTitles is not null)
             {
-                JobTitle jobTitle = (JobTitle)employeeJobTitles;
-                results = results.Where(x => x.Employees.Any(y => y.JobTitle == employeeJobTitles)).ToList();
-
+                List<JobTitle> jobTitle = employeeJobTitles.ToList();
+                results = results.Where(x => x.Employees.Any(y => employeeJobTitles.Contains(y.JobTitle))).ToList();
             }
 
             return results;

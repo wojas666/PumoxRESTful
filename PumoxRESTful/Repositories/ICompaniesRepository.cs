@@ -15,6 +15,6 @@ namespace PumoxRESTful.Repositories
         void DeleteCompany(long id);
 
         ICollection<Company> searchCompanies(string? keyword, DateTime? employeeDateOfBirthFrom,
-            DateTime? employeeDateOfBirthTo, JobTitle? employeeJobTitles);
+            DateTime? employeeDateOfBirthTo, ICollection<JobTitle>? employeeJobTitles);
     }
 }

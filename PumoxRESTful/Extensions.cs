@@ -10,10 +10,28 @@ namespace PumoxRESTful
             return new CompanyDto()
             {
                 Id = company.Id,
-                Employees = company.Employees,
+                Employees = company.Employees.AsDtos(),
                 EstablishmentYear = company.EstablishmentYear,
                 Name = company.Name
             };
+        }
+
+        public static ICollection<EmployeeDto> AsDtos(this ICollection<Employee> employees)
+        {
+            List<EmployeeDto> resultDtos = new List<EmployeeDto>();
+
+            foreach (var item in employees)
+            {
+                resultDtos.Add(new EmployeeDto()
+                {
+                    FirstName = item.FirstName,
+                    LastName = item.LastName,
+                    DateOfBirth = item.DateOfBirth,
+                    JobTitle = item.JobTitle
+                });
+            }
+
+            return resultDtos;
         }
     }
 }
