@@ -1,4 +1,6 @@
-﻿using PumoxRESTful.Models;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using PumoxRESTful.Models;
 
 namespace PumoxRESTful.Dtos
 {
@@ -10,6 +12,7 @@ namespace PumoxRESTful.Dtos
 
         public DateTime DateOfBirth { get; set; }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public JobTitle JobTitle { get; set; }    
     }
 }

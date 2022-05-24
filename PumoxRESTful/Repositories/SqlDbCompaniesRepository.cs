@@ -53,7 +53,10 @@ namespace PumoxRESTful.Repositories
             var item = _context.Companies.FirstOrDefault(x => x.Id == id);
 
             if (item != null)
+            {
                 _context.Companies.Remove(item);
+                _context.SaveChanges();
+            }
             else
                 throw new Exception("Firma o podanym identyfikatorze nie isteniej.");
         }

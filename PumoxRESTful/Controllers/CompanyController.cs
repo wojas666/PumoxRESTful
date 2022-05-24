@@ -111,7 +111,7 @@ namespace PumoxRESTful.Controllers
 
         [BasicAuthorize]
         [HttpPost("search")]
-        public JsonResult SearchCompany(SearchCompanyDto searchCompanyDto)
+        public JsonResult SearchCompany([FromBody]SearchCompanyDto searchCompanyDto)
         {
             var searchCompanies = _companiesRepository.searchCompanies(searchCompanyDto.Keyword,
                 searchCompanyDto.EmployeeDateOfBirthFrom, searchCompanyDto.EmployeeDateOfBirthTo,
